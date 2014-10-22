@@ -1,0 +1,70 @@
+<h2>Add new Order</h2>
+
+<form method="post">
+<table>
+<tr>
+<td align="center">Order Item</td>
+<td align="center">Quontity</td>
+<td align="center">Price</td>
+
+</tr>
+<tr>
+<td><input type="text" name="item" /></td>
+<td><input type="text" name="quontity" /></td>
+<td><input type="text" name="price" /></td>
+</tr>
+</table>
+<br> <input type="submit" value="Add Order">
+</form>
+<!--  if it's post request to add a order -->
+<!-- <%if (request.getMethod=="POST"){
+	var item = request.getParameter("item");
+	var qty = request.getParameter("quontity");
+	var price = request.getParameter("price");
+	//print("item"=item);
+	//print("quontity"=qty);
+	//print("price"=price);
+	if(!item || !qty || !price ){
+	response.status = 400;
+	print("<script>alert('Order details cannot be empty!');</script>");
+	} else {
+
+	json/json.order_store.push(
+	{
+	"item":item, "quontity":qty, "price": price
+	}
+	);
+
+	var file = new File("order_store.json");
+	file.open("w");
+	file.write(json);
+	file.close();
+	response.status = 200;
+	}
+	
+}%> -->
+<%
+// if it's post request to add a employee
+if(request.getMethod() == "POST"){
+var item = request.getParameter("item");
+var qty = request.getParameter("quontity");
+var price = request.getParameter("price");
+if(!item || !qty || !price ){
+response.status = 400;
+print("<script>alert('Employee details cannot be empty!');</script>");
+} else {
+json.orders.push(
+{
+"item":item, "quontity":qty, "price": price
+}
+);
+ 
+var file = new File("json/order_store.json");
+file.open("w");
+file.write(json);
+file.close();
+response.status = 200;
+}
+}
+ 
+%>
